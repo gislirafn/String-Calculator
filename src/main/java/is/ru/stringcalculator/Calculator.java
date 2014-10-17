@@ -29,6 +29,11 @@ public class Calculator {
 		return total;
     }
 
+    public static void main(String[] args){
+        System.out.print("hello");
+
+    }
+
 
 
 }
