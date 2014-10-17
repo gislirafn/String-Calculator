@@ -26,7 +26,7 @@ public class CalculatorTest {
 
 	@Test
     public void testMultipleNumbers(){
-    	assertEquals(120, Calculator.add("1,3,4,5,7,100"));
+    	assertEquals(6, Calculator.add("1,2,3"));
     }
 
 }
