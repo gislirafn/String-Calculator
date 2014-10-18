@@ -10,6 +10,8 @@ public class Calculator {
 			return 0;
         else if(text.contains("-"))
             return sum(splitNumbers(text, delimiters));
+        else if(text.contains("]["))
+            return sum(splitNumbersWithMultipleDelimiters(text, delimiters));
         else if(text.contains("//["))
             return sum(splitNumbersWithAnyLengthDelimiter(text, delimiters));
         else if(text.startsWith("//"))
@@ -35,6 +37,17 @@ public class Calculator {
     private static String[] splitNumbersWithAnyLengthDelimiter(String numbers, String delimiters){
         int newLineIndex = numbers.indexOf("\n");
         delimiters += "|" + numbers.substring(2, newLineIndex);
+        numbers = numbers.substring(newLineIndex + 1);
+        return numbers.split(delimiters);
+    }
+
+    private static String[] splitNumbersWithMultipleDelimiters(String numbers, String delimiters){
+        int newLineIndex = numbers.indexOf("\n");
+        delimiters += "|" + numbers.substring(3, 4);
+        for(int i = 4; i < newLineIndex; i++){
+            if(numbers.charAt(i) == '[')
+                delimiters += "|" + numbers.substring(i + 1, numbers.indexOf("]", i));
+        }
         numbers = numbers.substring(newLineIndex + 1);
         return numbers.split(delimiters);
     }

@@ -104,4 +104,10 @@ public class CalculatorTest {
     public void anyLengthDelimiter2(){
         assertEquals(7, Calculator.add("//[***]\n1***2***3,1"));
     }
+
+    //17
+    @Test
+    public void multipleDelimiter(){
+        assertEquals(11, Calculator.add("//[r][s]\n1,2\n3r2s3"));
+    }
 }
