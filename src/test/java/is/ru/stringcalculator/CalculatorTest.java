@@ -50,4 +50,16 @@ public class CalculatorTest {
     public void testMultipleNumbers2(){
         assertEquals(13, Calculator.add("1\n3,4\n5"));
     }
+
+    //8
+    @Test
+    public void delimiterTest(){
+        assertEquals(3, Calculator.add("//;\n1;2"));
+    }
+
+    //9
+    @Test
+    public void delimiterTest2(){
+        assertEquals(5, Calculator.add("//r\n1r1,1r1\n1"));
+    }
 }
