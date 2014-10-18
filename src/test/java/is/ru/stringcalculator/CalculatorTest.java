@@ -80,4 +80,28 @@ public class CalculatorTest {
     public void negativeTest2(){
         assertEquals(5, Calculator.add("2,-9\n2,-2,1"));
     }
+
+    //13
+    @Test
+    public void tooBigTest(){
+        assertEquals(2, Calculator.add("1001,2"));
+    }
+
+    //14
+    @Test
+    public void tooBigTest2(){
+        assertEquals(40, Calculator.add("//g\n13,7,1020g1001\n20"));
+    }
+
+    //15
+    @Test
+    public void anyLengthDelimiters(){
+        assertEquals(6, Calculator.add("//[rrr]\n1rrr2rrr3"));
+    }
+
+    //16
+    @Test
+    public void anyLengthDelimiter2(){
+        assertEquals(7, Calculator.add("//[***]\n1***2***3,1"));
+    }
 }
