@@ -62,4 +62,9 @@ public class CalculatorTest {
     public void delimiterTest2(){
         assertEquals(5, Calculator.add("//r\n1r1,1r1\n1"));
     }
+
+    //10
+//    @Test
+//    public void negativeTest(){
+//        assertEquals(2, Calculator.add("1,1,-2,-4"));
 }
