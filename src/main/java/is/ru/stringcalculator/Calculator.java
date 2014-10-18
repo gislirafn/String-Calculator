@@ -4,52 +4,52 @@ public class Calculator {
 
 	public static int add(String text){
 
-        String delimiters = ",|\n";
-
 		if(text.equals(""))
 			return 0;
         else if(text.contains("-"))
-            return sum(splitNumbers(text, delimiters));
+            return sum(splitNumbers(text));
         else if(text.contains("]["))
-            return sum(splitNumbersWithMultipleDelimiters(text, delimiters));
+            return sum(splitNumbersWithMultipleDelimiters(text));
         else if(text.contains("//["))
-            return sum(splitNumbersWithAnyLengthDelimiter(text, delimiters));
+            return sum(splitNumbersWithAnyLengthDelimiter(text));
         else if(text.startsWith("//"))
-            return sum(splitNumbersWithCustomDelimiter(text, delimiters));
+            return sum(splitNumbersWithCustomDelimiter(text));
         else
-            return sum(splitNumbers(text, delimiters));
+            return sum(splitNumbers(text));
     }
 
 	private static int toInt(String numbers){
 		return Integer.parseInt(numbers);
 	}
 
-	private static String[] splitNumbers(String numbers, String delimiters){
-	    return numbers.split(delimiters);
+	private static String[] splitNumbers(String numbers){
+        String delimiter = "[,|\\\n]";
+	    return numbers.split(delimiter);
     }
 
-    private static String[] splitNumbersWithCustomDelimiter(String numbers, String delimiters){
-        delimiters += "|" + numbers.substring(2,3);
+    private static String[] splitNumbersWithCustomDelimiter(String numbers){
+        String delimiter = "[\\D|\\" + numbers.substring(2,3);
         numbers = numbers.substring(4);
-        return numbers.split(delimiters);
+        return numbers.split(delimiter + "]");
     }
 
-    private static String[] splitNumbersWithAnyLengthDelimiter(String numbers, String delimiters){
+    private static String[] splitNumbersWithAnyLengthDelimiter(String numbers){
         int newLineIndex = numbers.indexOf("\n");
-        delimiters += "|" + numbers.substring(2, newLineIndex);
+        String delimiter = "[\\D|\\" + numbers.substring(3, newLineIndex);
         numbers = numbers.substring(newLineIndex + 1);
-        return numbers.split(delimiters);
+        return numbers.split(delimiter);
     }
 
-    private static String[] splitNumbersWithMultipleDelimiters(String numbers, String delimiters){
+    private static String[] splitNumbersWithMultipleDelimiters(String numbers){
         int newLineIndex = numbers.indexOf("\n");
-        delimiters += "|" + numbers.substring(3, 4);
-        for(int i = 4; i < newLineIndex; i++){
+        int firstDelim = numbers.indexOf("]");
+        String delimiter = "[\\D|\\" + numbers.substring(3, firstDelim);
+        for(int i = firstDelim; i < newLineIndex; i++){
             if(numbers.charAt(i) == '[')
-                delimiters += "|" + numbers.substring(i + 1, numbers.indexOf("]", i));
+                delimiter += "|\\" + numbers.substring(i + 1, numbers.indexOf("]", i));
         }
         numbers = numbers.substring(newLineIndex + 1);
-        return numbers.split(delimiters);
+        return numbers.split(delimiter + "]");
     }
 
     private static int sum(String[] numbers){

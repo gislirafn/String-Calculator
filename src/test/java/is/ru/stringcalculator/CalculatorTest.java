@@ -90,7 +90,7 @@ public class CalculatorTest {
     //14
     @Test
     public void tooBigTest2(){
-        assertEquals(40, Calculator.add("//g\n13,7,1020g1001\n20"));
+        assertEquals(40, Calculator.add("13,7,1020,1001\n20"));
     }
 
     //15
@@ -109,5 +109,11 @@ public class CalculatorTest {
     @Test
     public void multipleDelimiter(){
         assertEquals(11, Calculator.add("//[r][s]\n1,2\n3r2s3"));
+    }
+
+    //18
+    @Test
+    public void multipleDelimiter2(){
+        assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
     }
 }
