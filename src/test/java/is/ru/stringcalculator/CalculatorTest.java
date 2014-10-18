@@ -62,4 +62,6 @@ public class CalculatorTest {
     public void delimiterTest2(){
         assertEquals(5, Calculator.add("//r\n1r1,1r1\n1"));
     }
+
+    //10
 }
