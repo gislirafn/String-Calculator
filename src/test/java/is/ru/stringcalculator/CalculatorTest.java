@@ -64,7 +64,20 @@ public class CalculatorTest {
     }
 
     //10
-//    @Test
-//    public void negativeTest(){
-//        assertEquals(2, Calculator.add("1,1,-2,-4"));
+    @Test
+    public void negativeTest(){
+        assertEquals(2, Calculator.add("1,1,-2,-4"));
+    }
+
+    //11
+    @Test
+    public void notNegativeTest(){
+        assertEquals(2, Calculator.add("1\n1"));
+    }
+
+    //12
+    @Test
+    public void negativeTest2(){
+        assertEquals(5, Calculator.add("2,-9\n2,-2,1"));
+    }
 }

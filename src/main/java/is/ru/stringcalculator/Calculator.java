@@ -42,9 +42,15 @@ public class Calculator {
 
     private static int sum(String[] numbers){
  	    int total = 0;
+        String neg = "";
         for(String number : numbers){
+            if(toInt(number) < 0)
+                neg += number + ",";
 		    total += toInt(number);
 		}
+        if(!neg.equals(""))
+            throw new RuntimeException("Negatives not allowed: " + neg.substring(0, neg.length() - 1));
+
 		return total;
     }
 
